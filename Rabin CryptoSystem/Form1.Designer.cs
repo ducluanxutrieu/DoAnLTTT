@@ -74,6 +74,7 @@
             this.txtInputMessage.Name = "txtInputMessage";
             this.txtInputMessage.Size = new System.Drawing.Size(100, 26);
             this.txtInputMessage.TabIndex = 1;
+            this.txtInputMessage.TextChanged += new System.EventHandler(this.txtInputMessage_TextChanged);
             // 
             // btn_encryption
             // 
@@ -150,7 +151,7 @@
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(148, 27);
             this.btnGenerate.TabIndex = 9;
-            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.Text = "Khởi tạo";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 

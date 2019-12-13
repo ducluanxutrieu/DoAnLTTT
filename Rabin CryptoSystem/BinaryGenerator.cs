@@ -9,6 +9,7 @@ namespace Rabin_CryptoSystem
 {
     class BinaryGenerator
     {
+        //Tính toán chuyển từ số thập phân sang số nhị phân
         public List<int>  GenerateBinaryFormat(long number)
         {
 
@@ -21,6 +22,8 @@ namespace Rabin_CryptoSystem
                 binary.Add(bineq);
                 number = number / 2;
             }
+
+            binary.Reverse(); //Đảo ngược lại chuổi nhị phân để có được giá trị đúng
             return binary;
         }
     }

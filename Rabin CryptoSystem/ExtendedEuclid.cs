@@ -29,7 +29,6 @@ namespace Rabin_CryptoSystem
                 y = prevy - q * y;
                 prevy = temp;
             }
-            //	        System.out.println("Roots  x : "+ prevx +" y :"+ prevy);
             res_x = prevx;
             res_y = prevy;
 

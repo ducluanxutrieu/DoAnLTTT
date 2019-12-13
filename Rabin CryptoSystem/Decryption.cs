@@ -26,37 +26,36 @@ namespace Rabin_CryptoSystem
         if (invq < 0) {
             invq = p + invq;
         }
-        //System.out.println("\nEXTENDED EUCLIDEAN : invp = " + invp + " invq =" + invq);
 
-            //System.out.println("c = " + c.get((int) i) + " P+1/4 = " + ((p + 1) / 4) + " q+1/4 =" + ((q + 1) / 4));
             long r = modPow(c, (p + 1) / 4, p);
             long s = modPow(c, (q + 1) / 4, q);
-            //System.out.println("\nvalues : r = c^(p+1/4)mod p = " + r + "\n\t s = c^(q+1/4)mod q = " + s);
+            //giá trị : r = c^(p+1/4)mod p = " + r + "\n\t s = c^(q+1/4)mod q = " + s);
             long x = (invp * p * s + invq * q * r) % n;
             long y = (invp * p * s - invq * q * r) % n;
 
-            //Four value possible
+            //4 giá trị có thể
             long m1 = x;
             if (m1 < 0) {
-                m1 = n + m1;
+                m1 += n;
             }
             long m2 = -x % n;
             if (m2 < 0) {
-                m2 = n + m2;
+                m2 += n;
             }
             long m3 = y;
             if (m3 < 0) {
-                m3 = n + m3;
+                m3 += n;
             }
             long m4 = -y % n;
             if (m4 < 0) {
-                m4 = n + m4;
+                m4 += n;
             }
-            //System.out.println("Decrypted Messages : m1 = " + m1 + "  m2 = " + m2 + "  m3 = " + m3 + "  m4 = " + m4);
+            //Messages đã giải mã gồm 4 giá trị : m1, m2, m3, m4.
             BinaryGenerator binary = new BinaryGenerator();
             DecimalGenerator decimals = new DecimalGenerator();
                 List<List<int>> check = new List<List<int>>();
-            // all are in reverse order
+            // Đảo ngược giá trị trị của tất cả lại
+
             check.Add(binary.GenerateBinaryFormat(m1));
             check.Add(binary.GenerateBinaryFormat(m2));
             check.Add(binary.GenerateBinaryFormat(m3));
@@ -83,28 +82,22 @@ namespace Rabin_CryptoSystem
                         msg.Reverse();
                         long piece = decimals.getDecimal(msg);
                         message_pieces.Add(piece);
-                        //System.out.println("DECRYPTED MESSAGE PARTS IS : " + piece);
+                        //DECRYPTED MESSAGE PARTS là piece);
                         break;
                     }
                 }
             }
-
-
-        
         return generateMessage(message_pieces);
-
     }
-
 
     public void setValues(long p, long q, long n, long breakSize) {
         this.p = p;
         this.q = q;
         this.n = n;
         this.breakSize = breakSize;
-
     }
 
-    //Generate message from the Broken Pieces
+    //Khởi tạo Message từ Broken Pieces
 
     public long modPow(long a, long d, long n) {
         //  output = a^d mod n
@@ -132,14 +125,9 @@ namespace Rabin_CryptoSystem
             }
             temp.Reverse();
             message.AddRange(temp);
-            //System.out.println(msg.get(i) + " ");
-            //System.out.println(temp);
-
         }
 
-           return decimal1.getDecimal(message);
-        //System.out.println("Message : " + message);
-        //System.out.println("Message = " + decimal1.getDecimal(message));
+           return decimal1.getDecimal(message); //Message đã được giải mã
     }
     }
 }

@@ -16,8 +16,6 @@ namespace Rabin_CryptoSystem
             do
             {
                 num = randomNo.nextValue();
-                //			   System.out.println(num);
-
             } while (!checkPrime(num));
 
             return num;
@@ -41,7 +39,7 @@ namespace Rabin_CryptoSystem
         {
             Boolean result = false;
             long a = 2;
-            // long temp = (long) java.lang.Math.pow(a,p-1);
+            //Để lấy kết quả a^d mod n 
             if (modPow(a, p - 1, p) == 1)
             {
                 result = true;
@@ -71,13 +69,12 @@ namespace Rabin_CryptoSystem
                 s++;
             }
             d = temp;
-            //		   System.out.println("2^"+s+" X "+d);
             //		    n-1 = 2^s x d
 
             for (i = 0; i < k; i++)
             {
                 a = random.Next((int)((up - low) + 1)) + low;
-                x = modPow(a, d, n);
+                x = modPow(a, d, n);  //Để lấy kết quả a^d mod n
                 if (x == 1 || x == n - 1)
                 { result = true; }
                 for (int r = 1; r < s; r++)
@@ -99,7 +96,6 @@ namespace Rabin_CryptoSystem
             {
                 res = res * a;
                 res = res % n;
-
             }
             return res % n;
         }
